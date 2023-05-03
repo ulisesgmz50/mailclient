@@ -1,8 +1,10 @@
 import React from "react";
+import {BiEnvelope} from "react-icons/bi";
 
 const Mailinfo = ()  => {
     return (
-    <div class="maillist">
+    <div className="mailiconbg" >
+        <BiEnvelope/>
         
     </div>
     );

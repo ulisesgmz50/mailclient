@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { fetchMails } from "../../store/slices/mails";
 import {useDispatch, useSelector} from "react-redux";
 import '../../App.scss';
-import {BiEnvelope,BiLockAlt} from "react-icons/bi";
+import {BiLockAlt} from "react-icons/bi";
 
 
 const Maillist = ()  => {
@@ -37,7 +37,9 @@ const MailListItem = ({id, date, from, body, subject, setMailSelected,active})  
                 <div onClick={() => {setMailSelected(id); console.log(id); } } className={`listcontainer ${active ? "active" : ""}`} >
                     <a>
                     <h4>{date}</h4>
+                    <div className="flexcontainer">
                             <h1> <BiLockAlt/>&nbsp;  {from}  </h1> 
+                            </div>
                         <div>
                             <h2>{subject}</h2>
                             <h3>{body}</h3>
