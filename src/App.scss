@@ -12,28 +12,56 @@ $hoverbg: #F9F9FF;
 
 *{
     margin: 0;
-    padding: 0; box-sizing: border-box;
+    padding: 0; 
+    box-sizing: border-box;
+    
 }
 
 body{
-    background-color: $maillistbg;
+  display: flex;
+    background-color: $mailbg;
     font-family: $font-familytext;
+    background-image: url("../public/email.png");
+    background-repeat: no-repeat ;
+    background-position: center;
 }
 
 h1 {
   color: $colordetexto;
   font-size: 10px;
 }
-
+/*
 .mailiconbg{
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
   background-color: $mailbg;
-  color: $colordeborde;
-  font-size: 100px;
+  color: #ececee;
+  background-image: url("../public/email.png");
+  background-repeat: no-repeat ;
+  background-position: center;
+}
+*/
+
+.list {
+  //flex-basis: 320px;
+  //flex-grow: 1;
+  width: 100%;
+  max-width: 320px;
+  height: 100%;
+  max-height: 95vh;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  background-color: $maillistbg;
+}
+
+.viewedicon{
+  padding: 2px;
+  color: $selectedbar;
 }
 
 .listcontainer {
+  //max-height: 100vh;
     width: 100%;
     height: 100%;
     max-height: 80px;
@@ -44,7 +72,7 @@ h1 {
     &:hover{
         background-color: $hoverbg;
         cursor: pointer;
-        border-left: 4px solid $selectedbar;
+        max-width: 316px;
     }
     &.active{
       border-left: 4px solid $selectedbar;
@@ -55,6 +83,11 @@ h1 {
       color: $colordetexto;
       font-size: 12px;
       font-weight: bold;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      line-clamp: 1;
+      overflow: hidden;    
     }
     h2{
       font-family: $font-familytext;
@@ -84,31 +117,34 @@ h1 {
 }
 
 .flexcontainer{
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
+  vertical-align: middle;
+
 }
 
-.list {
-  width: 100%;
-  max-width: 320px;
-  margin: 0;
-  padding: 0;
+.inlineflex{
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  height: 100%;
+  max-height: 100vh;
+
 }
 
 .navbar{
-  font-size: 12px;
   width: 100%;
   max-width: 320px;
+  font-size: 12px;
   margin: 0;
-  padding: 0;
   height: 100%;
-  max-height:40px ;
+  max-height: 5vh ;
   border-bottom: 1px solid $colordeborde;
   border-right: 1px solid $colordeborde;
-  padding: 15px;
+  padding: 9px;
   text-align: right;
+  background-color: $maillistbg;
   a{
-    
     align-items: center;
     vertical-align: middle;
     color: $colordeborde;
@@ -122,10 +158,3 @@ h1 {
   }
 }
 
-
-
-.link{
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}

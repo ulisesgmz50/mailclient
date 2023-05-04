@@ -3,7 +3,7 @@ import { fetchMails } from "../../store/slices/mails";
 import {useDispatch, useSelector} from "react-redux";
 import '../../App.scss';
 import {BiLockAlt} from "react-icons/bi";
-
+import {VscCircleFilled} from "react-icons/vsc";
 
 const Maillist = ()  => {
     const {list: mails} = useSelector(state => state.mails);
@@ -13,7 +13,6 @@ const Maillist = ()  => {
     },[dispatch]);
 
     const [mailSelected, setMailSelected] = useState(null);
-    console.log(mailSelected);
 
     return (
         <div className="list">
@@ -29,15 +28,34 @@ const Maillist = ()  => {
 export default Maillist;
 
 
-const MailListItem = ({id, date, from, body, subject, setMailSelected,active})  => {
+export const MailListItem = ({id, date, from, body, subject, setMailSelected, active})  => {
     
-    const [mailReaded, setmailReaded] = useState(0);
-    console.log(active);
+    //const [mailReaded, setmailReaded] = useState(false);
+    const [mailItemSelected, setMailItemSelected] = useState(null);
+
+    const onSelectedItem = ({target}) => {
+        setMailItemSelected([target.id, target.date, target.value]);
+    }
+    const onClick = (event) => {
+        event.preventDefault();
+                setMailItemSelected(id, date, body);
+       setMailSelected((mailSelected) => [mailItemSelected]);
+       ///setMailItemInfo({  from, subject, body, date, isReaded, avatar, tag, attachements});
+
+    }
+
     return (
-                <div onClick={() => {setMailSelected(id); console.log(id); } } className={`listcontainer ${active ? "active" : ""}`} >
+                <div onClick={() =>  {setMailSelected(id); } } className={`listcontainer ${active ? "active" : ""}`} >
+                    
+                    <div className="inlineflex"
+                    value ={mailItemSelected}
+                    onChange={onSelectedItem}>
+                        <div className="viewedicon">
+                    <VscCircleFilled/> 
+                        </div>
                     <a>
                     <h4>{date}</h4>
-                    <div className="flexcontainer">
+                    <div className="inlineflex">
                             <h1> <BiLockAlt/>&nbsp;  {from}  </h1> 
                             </div>
                         <div>
@@ -45,6 +63,7 @@ const MailListItem = ({id, date, from, body, subject, setMailSelected,active})  
                             <h3>{body}</h3>
                         </div>
                     </a>
+                    </div>
                 </div>
             )
 }
